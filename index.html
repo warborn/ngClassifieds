@@ -19,8 +19,8 @@
     </div>
   </md-toolbar>
 
-  <md-content class="md-padding" layout="row" layout-wrap ng-controller="ClassifiedsCtrl">
-    <md-card flex="30" ng-repeat="classified in classifieds">
+  <md-content class="md-padding" layout="row" layout-xs="column" layout-wrap ng-controller="ClassifiedsCtrl">
+    <md-card flex="30" flex-xs="100" ng-repeat="classified in classifieds">
       <div class="classified">
         <img ng-src="img/{{ classified.image }}" class="md-card-image" alt="angularjs book">
       </div>
