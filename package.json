@@ -1,0 +1,28 @@
+{
+  "name": "ng-classifieds",
+  "version": "1.0.0",
+  "description": "Dependencies for the ngClassifieds application",
+  "main": "index.html",
+  "dependencies": {
+    "angular-aria": "^1.5.5",
+    "angular": "^1.5.5",
+    "angular-animate": "^1.5.5",
+    "angular-material": "^1.0.7",
+    "mdi": "^1.5.54",
+    "angular-messages": "^1.5.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/warborn/ngClassifieds.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/warborn/ngClassifieds/issues"
+  },
+  "homepage": "https://github.com/warborn/ngClassifieds#readme"
+}
