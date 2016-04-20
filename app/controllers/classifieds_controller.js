@@ -2,6 +2,8 @@
   'use strict';
 
   var classifiedsCtrl = function($scope) {
+    $scope.showAdmin = true;
+    
     $scope.classifieds = [
       {
         title: 'Pro AngularJS',

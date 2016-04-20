@@ -3,6 +3,12 @@ button .material-icons {
   font-size: 1.5em;
 }
 
+.classified-contact .material-icons {
+  margin-top: 4px;
+  font-size: 1.3em;
+  margin-right: 10px;
+}
+
 .classified .md-card-image {
   width: 100%;
   max-width: 100%;
