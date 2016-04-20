@@ -1,0 +1,15 @@
+button .material-icons {
+  margin-top: 4px;
+  font-size: 1.5em;
+}
+
+.classified .md-card-image {
+  width: 100%;
+  max-width: 100%;
+}
+
+.classified {
+  width: auto;
+  height: 450px;
+  overflow: hidden;
+}
