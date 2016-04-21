@@ -16,6 +16,6 @@ button .material-icons {
 
 .classified {
   width: auto;
-  height: 450px;
+  max-height: 450px;
   overflow: hidden;
 }
