@@ -13,7 +13,7 @@
       "Books",
       "Programming"
     ],
-    "image": "angular-book.jpg",
+    "image": "img/angular-book.jpg",
     "views": 213
   },
   {
@@ -30,7 +30,7 @@
       "Books",
       "Programming"
     ],
-    "image": "rails-book.jpg",
+    "image": "img/rails-book.jpg",
     "views": 213
   },
   {
@@ -47,7 +47,7 @@
       "Books",
       "Programming"
     ],
-    "image": "react-book.jpg",
+    "image": "img/react-book.jpg",
     "views": 213
   },
   {
@@ -64,7 +64,7 @@
       "Books",
       "Programming"
     ],
-    "image": "html-book.jpg",
+    "image": "img/html-book.jpg",
     "views": 213
   },
   {
@@ -81,7 +81,7 @@
       "Books",
       "Programming"
     ],
-    "image": "django-book.jpg",
+    "image": "img/django-book.jpg",
     "views": 213
   },
   {
@@ -98,7 +98,7 @@
       "Books",
       "Programming"
     ],
-    "image": "json-book.jpg",
+    "image": "img/json-book.jpg",
     "views": 213
   }
 ]
