@@ -7,19 +7,50 @@
   <link rel="stylesheet" href="node_modules/mdi/css/materialdesignicons.min.css" media="all" type="text/css">
   <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
-<body ng-app="ngClassifieds">
+<body ng-app="ngClassifieds" ng-controller="ClassifiedsCtrl">
 
   <md-toolbar>
     <div class="md-toolbar-tools">
       <span>ngClassifieds</span>
-      <md-button>
+      <md-button ng-click="openSidenav()">
         <md-icon class="mdi mdi-plus-circle"></md-icon>
         New Classified
       </md-button>
     </div>
   </md-toolbar>
 
-  <md-content class="md-padding" layout="row" layout-xs="column" layout-wrap ng-controller="ClassifiedsCtrl">
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    <md-toolbar>
+      <h1 class="md-toolbar-tools">Add a Classified</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+      <form>
+        <md-input-container>
+          <label for="title">Title</label>
+          <input type="text" id="title" md-autofocus>
+        </md-input-container>
+        <md-input-container>
+          <label for="price">Price</label>
+          <input type="text" id="price">
+        </md-input-container>
+        <md-input-container>
+          <label for="description">Description</label>
+          <textarea id="description" type="text"></textarea>
+        </md-input-container>
+        <md-input-container>
+          <label for="image">Image Link</label>
+          <input type="text" id="image">
+        </md-input-container>
+        <div layout="row" layout-xs="column">
+          <md-button class="md-primary btn-save">Save</md-button>
+          <md-button class="md-primary">Save Edit</md-button>
+          <md-button class="md-warn" ng-click="closeSidenav()">Cancel</md-button>
+        </div>
+      </form>
+    </md-content>
+  </md-sidenav>
+
+  <md-content class="md-padding" layout="row" layout-xs="column" layout-wrap >
     <md-card flex="30" flex-xs="100" ng-repeat="classified in classifieds">
       <div class="classified">
         <img ng-src="img/{{ classified.image }}" class="md-card-image" alt="angularjs book">

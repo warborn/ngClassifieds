@@ -19,3 +19,7 @@ button .material-icons {
   max-height: 450px;
   overflow: hidden;
 }
+
+.btn-save {
+  margin-left: -5px;
+}
