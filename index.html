@@ -42,8 +42,8 @@
           <input type="text" id="image" ng-model="classified.image">
         </md-input-container>
         <div layout="row" layout-xs="column">
-          <md-button class="md-primary btn-save" ng-click="saveClassified(classified)">Save</md-button>
-          <md-button class="md-primary">Save Edit</md-button>
+          <md-button class="md-primary btn-save" ng-if="!editing" ng-click="saveClassified(classified)">Save</md-button>
+          <md-button class="md-primary" ng-if="editing" ng-click="saveEdit()">Save Edit</md-button>
           <md-button class="md-warn" ng-click="closeSidenav()">Cancel</md-button>
         </div>
       </form>
@@ -73,7 +73,7 @@
         </div>
       </md-card-content>
       <md-card-actions layout="row" layout-align="center" ng-if="showAdmin">
-        <md-button class="md-primary">Edit</md-button>
+        <md-button class="md-primary" ng-click="editClassified(classified)">Edit</md-button>
         <md-button class="md-warn">Delete</md-button>
       </md-card-actions>
     </md-card>

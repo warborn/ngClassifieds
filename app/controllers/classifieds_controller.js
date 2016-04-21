@@ -3,6 +3,7 @@
 
   var classifiedsCtrl = function($scope, $http, Classified, $mdSidenav, $mdToast) {
     $scope.showAdmin = true;
+    $scope.editing = false;
 
     var contact = {
       name: 'Ryan Chenkie',
@@ -20,6 +21,7 @@
     };
 
     $scope.closeSidenav = function() {
+      $scope.classified = {};
       $mdSidenav('left').close();
     };
 
@@ -30,14 +32,32 @@
         $scope.classifieds.push(classified);
         $scope.classified = {};
         $scope.closeSidenav();
-        $mdToast.show(
-          $mdToast.simple()
-            .content("Classified Saved!")
-            .position('top, right')
-            .hideDelay(3000)
-        );
+        showToast('Classified saved!');
       }
     };
+
+    $scope.editClassified = function(classified) {
+      $scope.editing = true;
+      $scope.classified = classified;
+      $scope.openSidenav();
+    };
+
+    $scope.saveEdit = function() {
+      $scope.editing = false;
+      $scope.classified = {};
+      $scope.closeSidenav();
+      showToast('Classified updated!');
+    };
+
+    function showToast(message) {
+      $mdToast.show(
+        $mdToast.simple()
+          .content(message)
+          .position('top, right')
+          .hideDelay(3000)
+      );
+    }
+
   };
 
   classifiedsCtrl.$inject = ['$scope', '$http', 'Classified', '$mdSidenav', '$mdToast'];
