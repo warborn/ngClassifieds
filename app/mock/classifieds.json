@@ -28,7 +28,10 @@
     },
     "categories": [
       "Books",
-      "Programming"
+      "Programming",
+      "Web Development",
+      "Ruby on Rails",
+      "Framework"
     ],
     "image": "img/rails-book.jpg",
     "views": 213
@@ -45,7 +48,9 @@
     },
     "categories": [
       "Books",
-      "Programming"
+      "Programming",
+      "Libraries",
+      "Framework"
     ],
     "image": "img/react-book.jpg",
     "views": 213
@@ -62,7 +67,8 @@
     },
     "categories": [
       "Books",
-      "Programming"
+      "Programming",
+      "Front End"
     ],
     "image": "img/html-book.jpg",
     "views": 213
@@ -79,7 +85,8 @@
     },
     "categories": [
       "Books",
-      "Programming"
+      "Programming",
+      "Framework"
     ],
     "image": "img/django-book.jpg",
     "views": 213
@@ -96,7 +103,9 @@
     },
     "categories": [
       "Books",
-      "Programming"
+      "Programming",
+      "Web Development",
+      "Data format"
     ],
     "image": "img/json-book.jpg",
     "views": 213

@@ -20,6 +20,29 @@ button .material-icons {
   overflow: hidden;
 }
 
+.classified.ng-enter, .classified.ng-move {
+  transition: 0.4s all;
+  opacity: 0;
+}
+
+.classified.ng-enter.ng-enter-active,
+.classified.ng-move.ng-move-active {
+  opacity: 1;
+}
+
+.classified.ng-leave {
+  animation: 0.4 fade_classified;
+}
+
+@keyframes fade_classified {
+  from { opacity: 1; }
+  to  { opacity: 0 }
+}
+
 .btn-save {
   margin-left: -5px;
+}
+
+.btn-clear {
+  margin-top: 20px;
 }

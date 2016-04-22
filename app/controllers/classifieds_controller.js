@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var classifiedsCtrl = function($scope, $http, Classified, $mdSidenav, $mdToast) {
+  var classifiedsCtrl = function($scope, $http, Classified, $mdSidenav, $mdToast, $mdDialog) {
     $scope.showAdmin = true;
     $scope.editing = false;
 
@@ -14,6 +14,7 @@
     Classified.getAll()
       .then(function(classifieds) {
         $scope.classifieds = classifieds;
+        $scope.categories = getCategories($scope.classifieds);
       });
 
     $scope.openSidenav = function() {
@@ -49,6 +50,20 @@
       showToast('Classified updated!');
     };
 
+    $scope.deleteClassified = function(event, index, classified) {
+      var confirm = $mdDialog.confirm()
+            .title('Would you like to delete ' + classified.title + ' ?')
+            .textContent('You can´t undo this action.')
+            .ok('Yes')
+            .cancel('No')
+            .targetEvent(event);
+
+      $mdDialog.show(confirm).
+        then(function() {
+            $scope.classifieds.splice(index, 1);
+        });
+    };
+
     function showToast(message) {
       $mdToast.show(
         $mdToast.simple()
@@ -58,9 +73,21 @@
       );
     }
 
+    function getCategories(classifieds) {
+      var categories = [];
+
+      angular.forEach(classifieds, function(classified) {
+        angular.forEach(classified.categories, function(category) {
+          categories.push(category);
+        });
+      });
+
+      return _.uniq(categories);
+    }
+
   };
 
-  classifiedsCtrl.$inject = ['$scope', '$http', 'Classified', '$mdSidenav', '$mdToast'];
+  classifiedsCtrl.$inject = ['$scope', '$http', 'Classified', '$mdSidenav', '$mdToast', '$mdDialog'];
 
   angular.module('ngClassifieds')
     .controller('ClassifiedsCtrl', classifiedsCtrl);
