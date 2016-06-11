@@ -2,8 +2,20 @@
   'use strict';
 
   var classifiedsCtrl = function($scope, $http, Classified, $mdSidenav, $mdToast, $mdDialog) {
-    $scope.showAdmin = true;
-    $scope.editing = false;
+    var vm = this;
+
+    vm.openSidenav      = openSidenav;
+    vm.closeSidenav     = closeSidenav;
+    vm.saveClassified   = saveClassified;
+    vm.saveEdit         = saveEdit;
+    vm.editClassified   = editClassified;
+    vm.deleteClassified = deleteClassified;
+
+    vm.classified;
+    vm.classifieds;
+    vm.categories;
+    vm.showAdmin = true;
+    vm.editing = false;
 
     var contact = {
       name: 'Ryan Chenkie',
@@ -13,44 +25,44 @@
 
     Classified.getAll()
       .then(function(classifieds) {
-        $scope.classifieds = classifieds;
-        $scope.categories = getCategories($scope.classifieds);
+        vm.classifieds = classifieds;
+        vm.categories = getCategories(vm.classifieds);
       });
 
-    $scope.openSidenav = function() {
+    function openSidenav() {
       $mdSidenav('left').open();
     };
 
-    $scope.closeSidenav = function() {
-      $scope.classified = {};
+    function closeSidenav() {
+      vm.classified = {};
       $mdSidenav('left').close();
     };
 
-    $scope.saveClassified = function(classified) {
+    function saveClassified(classified) {
       if(classified) {
         classified.contact = contact;
         classified.posted = new Date().toJSON().slice(0,10);
-        $scope.classifieds.push(classified);
-        $scope.classified = {};
-        $scope.closeSidenav();
+        vm.classifieds.push(classified);
+        vm.classified = {};
+        closeSidenav();
         showToast('Classified saved!');
       }
     };
 
-    $scope.editClassified = function(classified) {
-      $scope.editing = true;
-      $scope.classified = classified;
-      $scope.openSidenav();
+    function editClassified(classified) {
+      vm.editing = true;
+      vm.classified = classified;
+      openSidenav();
     };
 
-    $scope.saveEdit = function() {
-      $scope.editing = false;
-      $scope.classified = {};
-      $scope.closeSidenav();
+    function saveEdit() {
+      vm.editing = false;
+      vm.classified = {};
+      closeSidenav();
       showToast('Classified updated!');
     };
 
-    $scope.deleteClassified = function(event, index, classified) {
+    function deleteClassified(event, index, classified) {
       var confirm = $mdDialog.confirm()
             .title('Would you like to delete ' + classified.title + ' ?')
             .textContent('You can´t undo this action.')
@@ -60,7 +72,7 @@
 
       $mdDialog.show(confirm).
         then(function() {
-            $scope.classifieds.splice(index, 1);
+            vm.classifieds.splice(index, 1);
         });
     };
 

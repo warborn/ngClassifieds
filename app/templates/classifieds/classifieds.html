@@ -1,0 +1,92 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <span>ngClassifieds</span>
+    <md-button ng-click="vm.openSidenav()">
+      <md-icon class="mdi mdi-plus-circle"></md-icon>
+      New Classified
+    </md-button>
+    <md-button ng-click="showFilters = !showFilters">
+      <md-icon class="mdi mdi-magnify"></md-icon>
+      Filters
+    </md-button>
+  </div>
+</md-toolbar>
+
+<div class="filters" layout="row" layout-align="center" ng-show="showFilters">
+  <md-input-container>
+    <label>Enter Search Term</label>
+    <input type="text" ng-model="classifiedsFilter">
+  </md-input-container>
+  <md-input-container>
+    <label>Category</label>
+    <md-select ng-model="category">
+      <md-option ng-repeat="category in vm.categories" value="{{ category }}">{{ category }}</md-option>
+    </md-select>
+  </md-input-container>
+  <div>
+    <md-button class="md-warn btn-clear" ng-click="classifiedsFilter = ''; category = ''">Clear</md-button>
+  </div>
+</div>
+
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+  <md-toolbar>
+    <h1 class="md-toolbar-tools">Add a Classified</h1>
+  </md-toolbar>
+  <md-content layout-padding>
+    <form>
+      <md-input-container>
+        <label for="title">Title</label>
+        <input type="text" id="title" md-autofocus ng-model="vm.classified.title">
+      </md-input-container>
+      <md-input-container>
+        <label for="price">Price</label>
+        <input type="text" id="price" ng-model="vm.classified.price">
+      </md-input-container>
+      <md-input-container>
+        <label for="description">Description</label>
+        <textarea id="description" type="text" ng-model="vm.classified.description"></textarea>
+      </md-input-container>
+      <md-input-container>
+        <label for="image">Image Link</label>
+        <input type="text" id="image" ng-model="vm.classified.image">
+      </md-input-container>
+      <div layout="row" layout-xs="column">
+        <md-button class="md-primary btn-save" ng-if="!vm.editing" ng-click="vm.saveClassified(vm.classified)">Save</md-button>
+        <md-button class="md-primary" ng-if="vm.editing" ng-click="vm.saveEdit()">Save Edit</md-button>
+        <md-button class="md-warn" ng-click="vm.closeSidenav()">Cancel</md-button>
+      </div>
+    </form>
+  </md-content>
+</md-sidenav>
+
+<md-content class="md-padding" layout="row" layout-xs="column" layout-wrap >
+  <md-card flex="30" flex-xs="100" ng-repeat="classified in vm.classifieds |
+                                              filter: classifiedsFilter |
+                                              filter: category"
+                                              class="classified">
+    <div class="classified">
+      <img ng-src="{{ classified.image }}" class="md-card-image" alt="angularjs book">
+    </div>
+    <md-card-content>
+      <div class="classified-info" ng-show="!showContact">
+        <h2 class="md-title">{{ classified.title }}</h2>
+        <h2>{{ classified.posted | date}}</h2>
+        <h3>{{ classified.price | currency }}</h3>
+        <p>{{ classified.content }}</p>
+      </div>
+      <div class="classified-contact" ng-show="showContact">
+        <p><md-icon class="mdi mdi-account"></md-icon>{{ classified.contact.name }}</p>
+        <p><md-icon class="mdi mdi-phone"></md-icon>{{ classified.contact.phone }}</p>
+        <p><md-icon class="mdi mdi-email"></md-icon>{{ classified.contact.email }}</p>
+      </div>
+      <div layout="row" layout-align="center center">
+        <md-button ng-click="showContact = true" ng-show="!showContact" >Contact</md-button>
+        <md-button ng-click="showContact = false" ng-show="showContact" >Info</md-button>
+      </div>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="center" ng-if="vm.showAdmin">
+      <md-button class="md-primary" ng-click="vm.editClassified(classified)">Edit</md-button>
+      <md-button class="md-warn" ng-click="vm.deleteClassified($event, $index, classified)">Delete</md-button>
+    </md-card-actions>
+  </md-card>
+</md-content>
